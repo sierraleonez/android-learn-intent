@@ -1,6 +1,7 @@
 package com.example.learnintents
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,10 +15,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btnMoveActivity : Button = findViewById(R.id.btn_mv_activity)
         val btnMoveWithData : Button = findViewById(R.id.btn_mv_with_data)
         val btnMoveWithObject : Button = findViewById(R.id.btn_mv_with_object)
+        val btnDialNumber : Button = findViewById(R.id.btn_dial_number)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveWithData.setOnClickListener(this)
         btnMoveWithObject.setOnClickListener(this)
+        btnDialNumber.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
@@ -43,6 +47,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val moveObjectWithintent = Intent(this@MainActivity, MoveWithObject::class.java)
                 moveObjectWithintent.putExtra(MoveWithObject.EXTRA_PERSON, person)
                 startActivity(moveObjectWithintent)
+            }
+
+            R.id.btn_dial_number -> {
+                val phoneNumber = "082242404797"
+                val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                startActivity(dialPhoneIntent)
             }
         }
     }
